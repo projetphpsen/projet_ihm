@@ -7,11 +7,11 @@ public class HomeView extends JFrame {
     JPanel connexion = new JPanel();
 
     public HomeView() {
-        setVisible(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         setTopPage();
         setConnectionFrom();
+        setVisible(true);
 
     }
 
@@ -29,9 +29,10 @@ public class HomeView extends JFrame {
     public void setConnectionFrom() {
         connexion.setLayout(new GridBagLayout());
         JLabel name = new JLabel("Nom :");
-        JLabel num = new JLabel("Numero de réservation :");
-        JTextField nameField = new JTextField();
-        JTextField numField = new JTextField();
+        JLabel num = new JLabel("N° de réservation :");
+        JTextField nameField = new JTextField(8);
+        JTextField numField = new JTextField(8);
+        JButton submit = new JButton("Entrer");
         GridBagConstraints contraintes = new GridBagConstraints();
         
         contraintes.gridx = 1;
@@ -44,24 +45,19 @@ public class HomeView extends JFrame {
 
         contraintes.gridx = 1;
         contraintes.gridy = 2;
-        contraintes.gridheight = 1;
-        contraintes.gridwidth = 1;
-        contraintes.insets = new Insets(5,5,5,5);
         connexion.add(num,contraintes);
 
         contraintes.gridx = 2;
         contraintes.gridy = 1;
-        contraintes.gridheight = 1;
-        contraintes.gridwidth = 1;
-        contraintes.insets = new Insets(5,5,5,5);
         connexion.add(nameField,contraintes);
 
         contraintes.gridx = 2;
         contraintes.gridy = 2;
-        contraintes.gridheight = 1;
-        contraintes.gridwidth = 1;
-        contraintes.insets = new Insets(5,5,5,5);
         connexion.add(numField,contraintes);
+
+        contraintes.gridx = 2;
+        contraintes.gridy = 3;
+        connexion.add(submit,contraintes);
 
         this.add(connexion);
 
