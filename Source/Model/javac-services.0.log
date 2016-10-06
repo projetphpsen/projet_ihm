@@ -83,3 +83,4 @@ Caused by: org.javacs.NoJavaConfigException: Can't find configuration file for /
 	at org.javacs.JavaLanguageServer$1.didOpen(JavaLanguageServer.java:191)
 	... 13 more
 
+INFO	?	main	2016-10-06T09:35:16.711Z	org.javacs.Main#run	Connection closed
