@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 public class HomeView extends JFrame {
     JPanel top = new JPanel();
@@ -8,9 +9,11 @@ public class HomeView extends JFrame {
 
     public HomeView() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Dimension dimension = new Dimension(500, 300);
+        setMinimumSize(dimension);
 
         setTopPage();
-        setConnectionFrom();
+        setConnectionForm();
         setVisible(true);
 
     }
@@ -24,10 +27,16 @@ public class HomeView extends JFrame {
         crash.setFont(new Font("Serif", Font.PLAIN, 60));
         top.add(crash);
         this.add(top, BorderLayout.NORTH);
+        crash.setBorder(BorderFactory.createMatteBorder(3,3,3,3,Color.red));
     }
 
-    public void setConnectionFrom() {
+    public void setConnectionForm() {
         connexion.setLayout(new GridBagLayout());
+
+        TitledBorder title = new TitledBorder("Connexion");
+        title = BorderFactory.createTitledBorder("Connexion");
+        connexion.setBorder(title);
+
         JLabel name = new JLabel("Nom :");
         JLabel num = new JLabel("N° de réservation :");
         JTextField nameField = new JTextField(8);
@@ -59,7 +68,9 @@ public class HomeView extends JFrame {
         contraintes.gridy = 3;
         connexion.add(submit,contraintes);
 
-        this.add(connexion);
+        this.add(connexion, BorderLayout.CENTER);
+        
+        
 
     }
 
