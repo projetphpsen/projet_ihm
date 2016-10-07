@@ -1,0 +1,14 @@
+
+import java.util.Scanner;
+
+public class TestModelControler {
+    private String nomClient;
+    private String refClient;
+    
+    public static void main(String[] args){
+	
+	
+    }
+
+
+}
