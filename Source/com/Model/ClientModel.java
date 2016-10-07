@@ -15,25 +15,36 @@ public class ClientModel {
     }
 
     //Vérifie si le client et la réservation sont enregistrés
-    public boolean verifyClient(String refClient, String nom) throws SQLException{
+    public static boolean findClient(String nom, String refClient) throws SQLException{
 	Connection con = ConnectionDB.getConnection();
 	Statement stmt = con.createStatement();
-	String requete = "SELECT COUNT(*) FROM Reservation join Client on (Reservation.idClient=Client.id) where Client.nom="+nom+" and reference="+refClient+"";
+	String requete = "SELECT COUNT(*) FROM Reservation join Client on (Reservation.idClient=Client.id) where nom='"+nom+"' and reference='"+refClient+"'";
 	ResultSet resultat = stmt.executeQuery(requete);
-	if(resultat != null )
-	    return true;
+	if(resultat.next()){
+	    int res = resultat.getInt(1);
+	    if(res == 1)
+		return true;
+	    else
+		return false;
+	}
 	else
 	    return false;
+	    
     }
 
     
-    public String getClientClass(String refClient, String nom) throws SQLException{
+    public static String getClientClass(String nom, String refClient) throws SQLException{
 	Connection con = ConnectionDB.getConnection();
 	Statement stmt = con.createStatement();
-	String requete = "SELECT designation FROM Client JOIN Reservation JOIN Classe ON (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse) WHERE nom="+nom+" and reference="+refClient+" ";
+	String requete = "SELECT designation FROM Client JOIN Reservation JOIN Classe ON (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse) WHERE nom='"+nom+"' and reference='"+refClient+"'";
 	ResultSet resultat = stmt.executeQuery(requete);
-	String classeClient = resultat.getString("designation");
-	return classeClient;
+	if(resultat.next()){
+	    String classeClient = resultat.getString("designation");
+	    return classeClient;
+	}
+	else
+	    return null;
+	
     }
     
     

@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.*;
+import java.lang.*;
 
 public class ConnectionDB {
 
@@ -8,14 +9,23 @@ public class ConnectionDB {
     
     public ConnectionDB(){
 	try{
-	     String login = "projetihm";
-	     String passwd = "mhitejorp";
-	     String url = "http://dwarves.iut-fbleau.fr";
-	     con = DriverManager.getConnection(url,login,passwd);
+	    Class.forName("com.mysql.jdbc.Driver");
 	}
-	catch (SQLException err){
-	    System.out.println(err.getMessage());
+	catch(ClassNotFoundException e){
+	    e.printStackTrace();
 	}
+	try{
+	    String login = "projetihm";
+	    String passwd = "mhitejorp";
+	    String url = "jdbc:mysql://dwarves.iut-fbleau.fr/projetihm";
+	    con = DriverManager.getConnection(url,login,passwd);
+
+	}
+	catch(SQLException e){
+	    e.printStackTrace();
+	}
+
+	
     }
     
     public static Connection getConnection(){
