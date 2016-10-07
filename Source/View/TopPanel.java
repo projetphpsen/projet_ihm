@@ -3,7 +3,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class TopPanel extends JPanel {
-    JLabel crash = new JLabel();
+    private JLabel crash = new JLabel();
 
     public TopPanel() {
         crash.setText("Crash Airlines");

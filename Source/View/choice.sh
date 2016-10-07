@@ -1,6 +1,6 @@
 #!/bin/bash
 
-javac ChoiceView.java TopPanel.java
+javac ChoiceView.java TopPanel.java ProgPanel.java SiegePanel.java
 
 if [[ $? -eq 0 ]]
 then
