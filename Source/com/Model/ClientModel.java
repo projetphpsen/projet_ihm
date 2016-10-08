@@ -32,7 +32,7 @@ public class ClientModel {
 	    
     }
 
-    
+    //Obtenir classe d'un client
     public static String getClientClass(String nom, String refClient) throws SQLException{
 	Connection con = ConnectionDB.getConnection();
 	Statement stmt = con.createStatement();
