@@ -3,14 +3,9 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class SiegePanel extends JPanel {
-    
+    private JLabel image = new JLabel(new ImageIcon("avion.jpg"));
     public SiegePanel() {
-        repaint();
-        add(new Img());
+        this.add(image, BorderLayout.CENTER);
     }
-    public void paint(Graphics g) {
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Image img = tk.getImage("moon.png");
-        g.drawImage(img,200,200,this);
-    }
+
 }

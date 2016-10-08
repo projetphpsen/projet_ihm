@@ -3,10 +3,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class ProgPanel extends JPanel {
-    private int progression = 0;
-    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private JFrame frame;
-    private Boolean sup = true;
+    
 
     public ProgPanel(JFrame frame) {
         this.frame = frame;

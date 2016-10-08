@@ -1,6 +1,6 @@
-INFO	?	main	2016-10-07T08:19:30.414Z	org.javacs.JavaLanguageServer#doLint	Lint /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ConnexionPanel.java
-SEVERE	?	main	2016-10-07T08:19:30.414Z	org.javacs.Main$4#onError	Can't find configuration file for /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ConnexionPanel.java
-org.javacs.NoJavaConfigException: Can't find configuration file for /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ConnexionPanel.java
+INFO	?	main	2016-10-07T13:43:46.432Z	org.javacs.JavaLanguageServer#doLint	Lint /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ChoiceView.java
+SEVERE	?	main	2016-10-07T13:43:46.432Z	org.javacs.Main$4#onError	Can't find configuration file for /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ChoiceView.java
+org.javacs.NoJavaConfigException: Can't find configuration file for /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ChoiceView.java
 	at org.javacs.JavaLanguageServer.lambda$findCompiler$22(JavaLanguageServer.java:453)
 	at java.util.Optional.orElseThrow(Optional.java:290)
 	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:453)
@@ -21,8 +21,8 @@ org.javacs.NoJavaConfigException: Can't find configuration file for /home/simon/
 	at org.javacs.Main.run(Main.java:150)
 	at org.javacs.Main.main(Main.java:69)
 
-SEVERE	?	main	2016-10-07T08:19:30.861Z	org.javacs.Main$4#onError	Can't find configuration file for /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ConnexionPanel.java
-org.javacs.NoJavaConfigException: Can't find configuration file for /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ConnexionPanel.java
+SEVERE	?	main	2016-10-07T13:43:46.900Z	org.javacs.Main$4#onError	Can't find configuration file for /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ChoiceView.java
+org.javacs.NoJavaConfigException: Can't find configuration file for /home/simon/Documents/JAVAPC/Projet_IHM/Source/View/ChoiceView.java
 	at org.javacs.JavaLanguageServer.lambda$findCompiler$22(JavaLanguageServer.java:453)
 	at java.util.Optional.orElseThrow(Optional.java:290)
 	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:453)
