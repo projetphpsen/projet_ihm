@@ -1,10 +1,19 @@
 import java.sql.*;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class ClientModel {
     private int id;
+    private String prenom;
     private String nom;
-    
+    private String refClient;
+    private String nomVol;
+    private Date depart;
+    private String classeClient;
+    private String menu;
+
+    public ClientModel (){}
+	    
     public ClientModel(String nom, String prenom) throws SQLException{
 	Connection con = ConnectionDB.getConnection();
 	Statement stmt = con.createStatement();
@@ -15,14 +24,21 @@ public class ClientModel {
     }
 
     //Vérifie si le client et la réservation sont enregistrés
-    public static boolean findClient(String nom, String refClient) throws SQLException{
+    public boolean findClient(String nomClient, String reference) throws SQLException{
+	nom = nomClient;
+	refClient = reference;
 	Connection con = ConnectionDB.getConnection();
 	Statement stmt = con.createStatement();
-	String requete = "SELECT COUNT(*) FROM Reservation join Client on (Reservation.idClient=Client.id) where nom='"+nom+"' and reference='"+refClient+"'";
+	String requete = "SELECT Client.nom,prenom,reference,Client.id,Vol.nom,depart,designation,choix FROM Vol join Reservation join Client join Classe join Menu on (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse and Menu.id=Reservation.idMenu and Vol.id=Reservation.idVol) WHERE Client.nom='"+nom+"' and reference='"+refClient+"'";
 	ResultSet resultat = stmt.executeQuery(requete);
 	if(resultat.next()){
-	    int res = resultat.getInt(1);
-	    if(res == 1)
+	    prenom = resultat.getString("prenom");
+	    id = resultat.getInt("Client.id");
+	    nomVol = resultat.getString("Vol.nom");
+	    depart = resultat.getTimestamp("depart");
+	    classeClient = resultat.getString("designation");
+	    menu = resultat.getString("choix");
+	    if(nom != null)
 		return true;
 	    else
 		return false;
@@ -32,20 +48,39 @@ public class ClientModel {
 	    
     }
 
-    //Obtenir classe d'un client
-    public static String getClientClass(String nom, String refClient) throws SQLException{
-	Connection con = ConnectionDB.getConnection();
-	Statement stmt = con.createStatement();
-	String requete = "SELECT designation FROM Client JOIN Reservation JOIN Classe ON (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse) WHERE nom='"+nom+"' and reference='"+refClient+"'";
-	ResultSet resultat = stmt.executeQuery(requete);
-	if(resultat.next()){
-	    String classeClient = resultat.getString("designation");
-	    return classeClient;
-	}
-	else
-	    return null;
-	
+    public void setmenu(){
     }
-    
+
+    public int getid(){
+	return id;
+    }
+
+    public String getnom(){
+	return nom;
+    }
+
+    public String getrefClient(){
+	return refClient;
+    }
+
+    public String getnomVol(){
+	return nomVol;
+    }
+
+    public String getclasseClient(){
+	return classeClient;
+    }
+
+    public String getmenu(){
+	return menu;
+    }
+
+    public String getprenom(){
+	return refClient;
+    }
+
+    public Date getdepart(){
+	return depart;
+    }
     
 }

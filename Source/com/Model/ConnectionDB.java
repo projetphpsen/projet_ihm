@@ -4,6 +4,7 @@ import java.sql.*;
 import java.lang.*;
 import java.io.Console;
 
+
 public class ConnectionDB {
 
     private static Connection con;
@@ -17,9 +18,9 @@ public class ConnectionDB {
 	}
 	try{
 	    Console console = System.console();
-	    String login = "reilhac";
 	    String url = "jdbc:mysql://dwarves.iut-fbleau.fr/reilhac";
-	    String passwd = new String(console.readPassword("password : "));
+	    String login="reilhac";
+	    String passwd = new String(console.readPassword("Password for database "+login+" : "));
 	    con = DriverManager.getConnection(url,login,passwd);
 	}
 	catch(SQLException e){
