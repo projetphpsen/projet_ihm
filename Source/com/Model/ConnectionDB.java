@@ -32,5 +32,8 @@ public class ConnectionDB {
     public static Connection getConnection(){
 	return con;
     }
-        
+
+    public static void disconnect(){
+	con = null;
+    }
 }
