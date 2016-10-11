@@ -4,9 +4,10 @@ public class ReservationModel {
     private String ref;
     private VolModel vol;
     private ClientModel client;
+    private String reference;
     private String superieur;
     private String place;
-    private int menu;
+    private String menu;
     private Boolean tablette;
     private int quotidien[];
 
@@ -32,14 +33,13 @@ public class ReservationModel {
         prepare.executeUpdate();
     }
 
-    /*public void setMenu(int menu)  {
-        this.menu = menu;
+    public static String setMenu(String menu, ClientModel client) {
+	String refClient = client.getrefClient();
         Statement stmt = con.createStatement();
-        PreparedStatement prepare = con.prepareStatement("UPDATE Reservation SET menu = ? WHERE ref = ?");
-        prepare.setString(1, menu);
-        prepare.setString(2, ref);
-        prepare.executeUpdate();
-	}*/
+        String requete = "UPDATE Reservation SET menu ='"+menu+"' WHERE ref ='"+refClient+"'";
+        Resultset resultat = stmt.executeQuery(requete);
+	
+    }
 
     /*public void setTablette(Boolean tab)  {
         this.tablette = tab;

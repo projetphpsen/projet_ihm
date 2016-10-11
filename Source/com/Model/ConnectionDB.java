@@ -2,6 +2,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.*;
 import java.lang.*;
+import java.io.Console;
+
 
 public class ConnectionDB {
 
@@ -15,21 +17,23 @@ public class ConnectionDB {
 	    e.printStackTrace();
 	}
 	try{
-	    String login = "projetihm";
-	    String passwd = "mhitejorp";
-	    String url = "jdbc:mysql://dwarves.iut-fbleau.fr/projetihm";
+	    Console console = System.console();
+	    String url = "jdbc:mysql://dwarves.iut-fbleau.fr/reilhac";
+	    String login="reilhac";
+	    String passwd = new String(console.readPassword("Password for database "+login+" : "));
 	    con = DriverManager.getConnection(url,login,passwd);
-
 	}
 	catch(SQLException e){
-	    e.printStackTrace();
 	}
-
+	
 	
     }
     
     public static Connection getConnection(){
 	return con;
     }
-        
+
+    public static void disconnect(){
+	con = null;
+    }
 }
