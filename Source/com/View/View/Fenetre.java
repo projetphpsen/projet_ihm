@@ -3,16 +3,15 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class Fenetre extends JFrame {
-    private JPanel siege = new SiegePanel();
+    private JPanel siege = new JournalPanel();
     public Fenetre() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new Dimension(1000, 800));
         add(siege);
-        pack();
         setVisible(true);
     }
     public static void main(String[] args) {
-        JFrame frame = new Fenetre  ();
+        JFrame frame = new Fenetre();
     }
 
 }
