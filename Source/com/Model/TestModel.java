@@ -45,6 +45,51 @@ public class TestModel {
 		    System.out.println("- setcommentaire : "+commentaire);
 		    c.setcommentaire(commentaire);
 		    System.out.println("- getcommentaire(2) : "+c.getcommentaire(c.getnomVol()));
+		    
+		    String a = "C";
+		    PersonnelsModel p = new PersonnelsModel();
+		    for(int i=1;i <=10;i++){
+			if(i!=13){
+			    for(int j = 0; j<3; j++){
+				if(a=="C")
+				    a="A";
+				else if(a=="A")
+				    a="E";
+				else if(a=="E")
+				    a="C";
+				String rangee=String.valueOf(i);
+				String refPlace=a+rangee;
+				System.out.print(refPlace);
+				p.genererPlace(refPlace);
+			    }
+			    System.out.println(" ");
+			}
+		    }
+		    a="C";
+		    for(int i=11;i <=31;i++){
+			if(i!=13){
+			    for(int j = 0; j<5; j++){
+				if(a=="C")
+				    a="B";
+				else if(a=="B")
+				    a="A";
+				else if(a=="A")
+				    a="E";
+				else if(a=="E")
+				    a="D";
+				else if(a=="D")
+				    a="C";
+				String rangee=String.valueOf(i);
+				String refPlace=a+rangee;
+				System.out.print(refPlace);
+				p.genererPlace(refPlace);
+			    }
+			    System.out.println(" ");
+			}
+		    }
+
+
+
 		    attempt = 3;
 		}
 		System.out.println("- ConnectionDB.disconnect");
