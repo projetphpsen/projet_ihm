@@ -8,7 +8,7 @@ public class ChoiceView extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new Dimension(1000, 800));
         add(main);
-        pack();
+        //pack();
         setVisible(true);
     }
     public static void main(String[] args) {
