@@ -4,24 +4,37 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class JournalPanel extends JPanel implements ActionListener{
-    String[] quot = {"l'Equipe", "Le Figaro", "Le Monde", "L'Humanité", "Libération", "Les échos", "Le Parisien"};
-    //JComboBox combo = new JComboBox(range);
-    JLabel journaux = new JLabel("Choisissez vos quotidiens :");
+    JLabel label = new JLabel("Veuillez choisir vos quotidiens favoris :");
     JButton clear = new JButton("Reset");
     JButton submit = new JButton("Suivant");
     DefaultListModel listModelOne = new DefaultListModel();
-    JList liste = new JList(quot);
+    JList liste = new JList(listModelOne);
     DefaultListModel listModel = new DefaultListModel();
     JList listeChoix = new JList(listModel);
 
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == submit) {
+
+        }
         if(e.getSource() == clear) {
-            listModel.clear();
+            resetElements();
         }
     }
     
+    public void resetElements() {
+        listModel.clear();
+        listModelOne.clear();
+        listModelOne.addElement("L'Equipe");
+        listModelOne.addElement("Le Figaro");
+        listModelOne.addElement("L'Humanité'");
+        listModelOne.addElement("Libération");
+        listModelOne.addElement("Les échos");
+        listModelOne.addElement("Le Parisien");
+    }
 
     public JournalPanel() {
+        resetElements();
+        
         this.setLayout(new GridBagLayout());
         GridBagConstraints contraintes = new GridBagConstraints();
         listeChoix.setVisibleRowCount(7);
@@ -31,13 +44,30 @@ public class JournalPanel extends JPanel implements ActionListener{
                 JList liste = (JList)evt.getSource();
                     if (evt.getClickCount() == 2) {
                         listModel.addElement(liste.getSelectedValue().toString());
+                        listModelOne.removeElement(liste.getSelectedValue());
                         liste.clearSelection();
                     } else if (evt.getClickCount() == 3) {
                         listModel.addElement(liste.getSelectedValue().toString());
+                        listModelOne.removeElement(liste.getSelectedValue());
                         liste.clearSelection();
                     }
             }
             });
+
+        listeChoix.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList liste = (JList)evt.getSource();
+                    if (evt.getClickCount() == 2) {
+                        listModelOne.addElement(listeChoix.getSelectedValue().toString());
+                        listModel.removeElement(listeChoix.getSelectedValue());
+                        liste.clearSelection();
+                    } else if (evt.getClickCount() == 3) {
+                        listModelOne.addElement(listeChoix.getSelectedValue().toString());
+                        listModel.removeElement(listeChoix.getSelectedValue());
+                        liste.clearSelection();
+                    }
+            }
+            });    
 
         clear.addActionListener(this);
 
@@ -47,7 +77,7 @@ public class JournalPanel extends JPanel implements ActionListener{
         contraintes.gridwidth = 1;
         contraintes.fill = GridBagConstraints.HORIZONTAL;
         contraintes.insets = new Insets(5,5,5,5);
-        this.add(journaux,contraintes);
+        this.add(label,contraintes);
 
         contraintes.gridx = 2;
         contraintes.gridy = 1;
@@ -64,5 +94,6 @@ public class JournalPanel extends JPanel implements ActionListener{
         contraintes.gridx = 4;
         contraintes.gridy = 1;
         this.add(submit,contraintes);
+
     }
 }
