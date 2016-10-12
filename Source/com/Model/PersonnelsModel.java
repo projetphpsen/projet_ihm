@@ -11,7 +11,8 @@ public class PersonnelsModel {
 	//this.nomVol = nomVol;
 	client = new ClientModel();
     }
-    
+
+    /*
     public String[] getListeTablettes() throws SQLException{
 	this.nomVol=nomVol;
 	Connection con = ConnectionDB.getConnection();
@@ -34,16 +35,15 @@ public class PersonnelsModel {
 	return listeTablettes;
 	
     }
-
+    
     public void genererPlace(String reference) throws SQLException{
 	Connection con = ConnectionDB.getConnection();
 	Statement stmt = con.createStatement();
 	String requete = "INSERT INTO Place(reference) VALUES('"+reference+"')";
      	stmt.executeUpdate(requete);
     }
+    */
     
-    public void getClient(){
-    }
 
     
 }

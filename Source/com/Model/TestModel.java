@@ -5,12 +5,21 @@ public class TestModel {
     public static void main(String[] args){
 	//Variable pour l'authentification
 	int attempt = 1;
-	//Variables pour le test
-	String nomClient="humbert";
-	String refClient="P7A3O4Q0SYY8";
+	//Variables pour le test :
+	//Cas 1 : info d'un Client en fonction de la place et du nom du vol
+	int idPlace=2;
+	String nomVol="CA2182";
+	String nomClient = null;
+	String refClient = null;
+	//Cas 2 : client se connecte
+	//String nomClient="humbert";
+	//String refClient="P7A3O4Q0SYY8";
+	
 	String commentaire="Vol épouvantable!";
-	boolean tablette = false;//pas de tablette
+	boolean tablette = true;//false = pas de tablette
 	String menu = "végétarien";//on doit mettre soit "végétarien","normal",ou"sans gluten"
+	int choixQuotidien = 0;
+	
 	while(attempt <= 3) {
 	    try {
 		if(attempt > 1 )
@@ -24,28 +33,41 @@ public class TestModel {
 		    System.out.println("---MODELE : ConnexionDB.java---");
 		    System.out.println("- ConnectionDB.getConnection(1) : "+ConnectionDB.getConnection());
 		    System.out.println("---MODELE : ClientModel.java---");
-		    System.out.println("- findClient : "+c.findClient(nomClient,refClient));
-		    System.out.println("- getnom : "+c.getnom());
-		    System.out.println("- getprenom : "+c.getprenom()); 
-		    System.out.println("- getrefClient : "+c.getrefClient());
-		    System.out.println("- getnomVol : "+c.getnomVol());
-		    System.out.println("- getclasseClient : "+c.getclasseClient());
+		    System.out.println("- findClient : "+c.getClient(idPlace,nomVol,nomClient,refClient));
+		    System.out.println("- getnom : "+c.getNom());
+		    System.out.println("- getprenom : "+c.getPrenom()); 
+		    System.out.println("- getrefClient : "+c.getRefClient());
+		    System.out.println("- getnomVol : "+c.getNomVol());
+		    System.out.println("- getclasseClient : "+c.getClasseClient());
 		    
-		    System.out.println("- getid : "+c.getid());
-		    System.out.println("- getdepart : "+c.getdepart());
-		    System.out.println("- getmenu(1) : "+c.getmenu());
+		    System.out.println("- getid : "+c.getId());
+		    System.out.println("- getdepart : "+c.getDepart());
+		    System.out.println("- getmenu(1) : "+c.getMenu());
 		    System.out.println("- setmenu : "+menu);
-		    c.setmenu(menu);   
-		    System.out.println("- getmenu(2) :"+c.getmenu());
-		    System.out.println("- getchoixtablette(1) : "+c.getchoixtablette());
+		    c.setMenu(menu);   
+		    System.out.println("- getmenu(2) :"+c.getMenu());
+		    System.out.println("- getchoixtablette(1) : "+c.getChoixTablette());
 		    System.out.println("- setchoixtablette : "+tablette);
-		    c.setchoixtablette(tablette);
-		    System.out.println("- getchoixtablette(2) : "+c.getchoixtablette());
-		    System.out.println("- getcommentaire(1) : "+c.getcommentaire(c.getnomVol()));
+		    c.setChoixTablette(tablette);
+		    System.out.println("- getchoixtablette(2) : "+c.getChoixTablette());
+		    System.out.println("- getcommentaire(1) : "+c.getCommentaire(c.getNomVol()));
 		    System.out.println("- setcommentaire : "+commentaire);
-		    c.setcommentaire(commentaire);
-		    System.out.println("- getcommentaire(2) : "+c.getcommentaire(c.getnomVol()));
-		    
+		    c.setCommentaire(commentaire);
+		    System.out.println("- getcommentaire(2) : "+c.getCommentaire(c.getNomVol()));
+		    System.out.println("- getidPlace(1) : "+c.getIdPlace());
+		    System.out.println("- getReferencePlace(1) : "+c.getReferencePlace());
+		    System.out.println("- setPlace : "+idPlace);
+		    c.setPlace(idPlace);
+		    System.out.println("- getidPlace(2) : "+c.getIdPlace());
+		    System.out.println("- getReferencePlace : "+c.getReferencePlace());
+		    System.out.println("- setChoixQuotidien : "+choixQuotidien);
+		    //c.setChoixQuotidien(choixQuotidien-2);
+		    System.out.print("- getListeQuotidien : ");
+		    String[] tab = c.getListeQuotidien();
+		    for(int i = 0; i < tab.length; i++)
+			System.out.print(tab[i]+" - ");
+		    System.out.println(" ");
+		    System.out.println("- reference des places :");
 		    String a = "C";
 		    PersonnelsModel p = new PersonnelsModel();
 		    for(int i=1;i <=10;i++){
@@ -60,7 +82,6 @@ public class TestModel {
 				String rangee=String.valueOf(i);
 				String refPlace=a+rangee;
 				System.out.print(refPlace);
-				p.genererPlace(refPlace);
 			    }
 			    System.out.println(" ");
 			}
@@ -82,7 +103,6 @@ public class TestModel {
 				String rangee=String.valueOf(i);
 				String refPlace=a+rangee;
 				System.out.print(refPlace);
-				p.genererPlace(refPlace);
 			    }
 			    System.out.println(" ");
 			}
@@ -92,6 +112,7 @@ public class TestModel {
 
 		    attempt = 3;
 		}
+		System.out.println("---MODELE : ConnectionDB.java---"); 
 		System.out.println("- ConnectionDB.disconnect");
 		ConnectionDB.disconnect();
 		System.out.println("- ConnectionDB.getConnection(2) : "+ConnectionDB.getConnection());
