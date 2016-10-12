@@ -2,13 +2,14 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class MenuPanel extends JPanel {
+public class MenuPanel extends JPanel implements ActionListener {
     String[] range = {"Classic", "Végétarien", "Sans gluten"};
     JComboBox combo = new JComboBox(range);
     JLabel menu = new JLabel("Choisissez votre menu :");
     JButton submit = new JButton("Suivant");
 
     public MenuPanel() {
+        submit.addActionListener(this);
         this.setLayout(new GridBagLayout());
         GridBagConstraints contraintes = new GridBagConstraints();
         
@@ -32,4 +33,9 @@ public class MenuPanel extends JPanel {
         contraintes.gridy = 3;
         this.add(submit,contraintes);
     }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == submit) {
+            
+        }
 }

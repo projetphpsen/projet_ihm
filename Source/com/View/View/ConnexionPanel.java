@@ -11,11 +11,11 @@ public class ConnexionPanel extends JPanel {
     JButton submit = new JButton("Entrer");
 
     public ConnexionPanel() {
-        this.setLayout(new GridBagLayout());
-       
-        title = BorderFactory.createTitledBorder("Connexion");
-        //this.setBorder(title);
+        addComponents();        
+    }
 
+    public void addComponents() {
+        this.setLayout(new GridBagLayout());
         GridBagConstraints contraintes = new GridBagConstraints();
         
         contraintes.gridx = 1;
