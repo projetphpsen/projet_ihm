@@ -7,18 +7,20 @@ public class TestModel {
 	int attempt = 1;
 	//Variables pour le test :
 	//Cas 1 : info d'un Client en fonction de la place et du nom du vol
-	int idPlace=2;
-	String nomVol="CA2182";
-	String nomClient = null;
-	String refClient = null;
+	PlaceModel place = new PlaceModel();
+	String nomVol=null;
+	int idPlace=0;
+	//String nomVol="CA2182";
+	//String nomClient = null;
+	//String refClient = null;
 	//Cas 2 : client se connecte
-	//String nomClient="humbert";
-	//String refClient="P7A3O4Q0SYY8";
+	String nomClient="humbert";
+	String refClient="P7A3O4Q0SYY8";
 	
 	String commentaire="Vol épouvantable!";
 	boolean tablette = true;//false = pas de tablette
 	String menu = "végétarien";//on doit mettre soit "végétarien","normal",ou"sans gluten"
-	int choixQuotidien = 0;
+	int choixQuotidien = 2;
 	
 	while(attempt <= 3) {
 	    try {
@@ -57,11 +59,13 @@ public class TestModel {
 		    System.out.println("- getidPlace(1) : "+c.getIdPlace());
 		    System.out.println("- getReferencePlace(1) : "+c.getReferencePlace());
 		    System.out.println("- setPlace : "+idPlace);
+		    idPlace = place.getIdDeReferencePlace("A1");
 		    c.setPlace(idPlace);
+
 		    System.out.println("- getidPlace(2) : "+c.getIdPlace());
 		    System.out.println("- getReferencePlace : "+c.getReferencePlace());
 		    System.out.println("- setChoixQuotidien : "+choixQuotidien);
-		    //c.setChoixQuotidien(choixQuotidien-2);
+		    c.setChoixQuotidien(choixQuotidien);
 		    System.out.print("- getListeQuotidien : ");
 		    String[] tab = c.getListeQuotidien();
 		    for(int i = 0; i < tab.length; i++)
