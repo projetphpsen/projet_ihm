@@ -3,7 +3,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class Fenetre extends JFrame {
-    private JPanel siege = new ConnexionPanel();
+    private JPanel siege = new TabPanel();
     public Fenetre() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new Dimension(1000, 800));

@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import java.util.*;
 
 public class JournalPanel extends JPanel implements ActionListener{
     JLabel label = new JLabel("Veuillez choisir vos quotidiens favoris :");
@@ -11,15 +12,22 @@ public class JournalPanel extends JPanel implements ActionListener{
     JList liste = new JList(listModelOne);
     DefaultListModel listModel = new DefaultListModel();
     JList listeChoix = new JList(listModel);
+    ArrayList<String> journauxChoisis = new ArrayList<String>();
 
     public JournalPanel() {
+            submit.addActionListener(this);
             resetElements();
             addComponents();
     }
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == submit) {
+            ListModel listeFinale = listeChoix.getModel();
 
+            for(int i=0; i < listeFinale.getSize(); i++){
+                 journauxChoisis.add(listeFinale.getElementAt(i).toString());  
+                 System.out.println(journauxChoisis.get(i));
+            }
         }
         if(e.getSource() == clear) {
             resetElements();
