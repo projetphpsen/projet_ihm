@@ -1,17 +1,31 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class ConnexionPanel extends JPanel {
+public class ConnexionPanel extends JPanel implements ActionListener{
     TitledBorder title = new TitledBorder("Connexion");
     JLabel name = new JLabel("Nom :");
     JLabel num = new JLabel("N° de réservation :");
     JTextField nameField = new JTextField(8);
     JTextField numField = new JTextField(8);
     JButton submit = new JButton("Entrer");
+    String nomS;
+    String numS;
 
     public ConnexionPanel() {
-        addComponents();        
+        addComponents();    
+        submit.addActionListener(this);    
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == submit) {
+            nomS = nameField.getText();
+            numS = numField.getText();
+            System.out.println(nomS);
+            System.out.println(numS);
+            
+        }
     }
 
     public void addComponents() {

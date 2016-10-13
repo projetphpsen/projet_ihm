@@ -8,6 +8,7 @@ public class MenuPanel extends JPanel implements ActionListener {
     JComboBox combo = new JComboBox(range);
     JLabel menu = new JLabel("Choisissez votre menu :");
     JButton submit = new JButton("Suivant");
+    String menuChoisi;
 
     public MenuPanel() {
         submit.addActionListener(this);
@@ -41,7 +42,8 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == submit) {
-            
+            menuChoisi = combo.getSelectedItem().toString();
+            System.out.println(menuChoisi);
         }
     }
 }

@@ -5,30 +5,33 @@ import javax.swing.border.*;
 
 public class FormPanel extends JPanel implements ActionListener{
     boolean sup = true;
+    JComboBox combox;
+    JComboBox combo; 
     String[] range;
     String[] num;
     JButton submit = new JButton("Envoyer");
+    String siegeChoisi;
 
     public FormPanel() {
-        setComboBoxesValues(this.sup);
-        submit.addActionListener(this);    
-        JComboBox combox = new JComboBox(num);
-        JComboBox combo = new JComboBox(range);
-        add(combo);
+        setComboBoxesItems(this.sup);
+        submit.addActionListener(this);
+        combo = new JComboBox(num);
+        combox = new JComboBox(range);
         add(combox);
+        add(combo);
         add(submit);
     }
 
-    public void setComboBoxesValues(boolean sup) {
+    public void setComboBoxesItems(boolean sup) {
         if(sup == true) {
-            num = new String[11];
+            num = new String[10];
             range = new String[3];
             range[0] = "A";
             range[1] = "C";
             range[2] = "E"; 
 
-            for(int i = 0; i<11; i++) {
-                    num[i] = Integer.toString(i);
+            for(int i = 0; i<10; i++) {
+                    num[i] = Integer.toString(i+1);
                 }
         }
         
@@ -58,8 +61,9 @@ public class FormPanel extends JPanel implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == submit) {
-            
+        if(e.getSource() == submit) { 
+            siegeChoisi = combox.getSelectedItem().toString();
+            siegeChoisi = siegeChoisi.concat(combo.getSelectedItem().toString());
         }
     }
 }
