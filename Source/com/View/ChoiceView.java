@@ -3,13 +3,12 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class ChoiceView extends JFrame {
-    JPanel top = new TopPanel();
+    private JPanel main = new MainPanel(this);
     public ChoiceView() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        Dimension dimension = new Dimension(500, 300);
-        setMinimumSize(dimension);
-
-        this.add(top, BorderLayout.NORTH);
+        setMinimumSize(new Dimension(1000, 800));
+        add(main);
+        //pack();
         setVisible(true);
     }
     public static void main(String[] args) {

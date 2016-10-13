@@ -8,7 +8,7 @@ public class HomeView extends JFrame {
 
     public HomeView() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        Dimension dimension = new Dimension(500, 300);
+        Dimension dimension = new Dimension(1000, 800);
         setMinimumSize(dimension);
 
         this.add(connexion, BorderLayout.CENTER);
