@@ -3,7 +3,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class SiegePanel extends JPanel {
-    private boolean superieur;
+    private boolean superieur = false;
     private boolean[] rangeAsup = new boolean[10];
     private boolean[] rangeCsup = new boolean[10];
     private boolean[] rangeEsup = new boolean[10];

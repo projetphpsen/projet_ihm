@@ -4,9 +4,9 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class FormPanel extends JPanel implements ActionListener{
-    boolean sup;
-    String[] range = new String[6];
-    String[] num = new String[32];
+    boolean sup = true;
+    String[] range;
+    String[] num;
     JButton submit = new JButton("Envoyer");
 
     public FormPanel() {
@@ -21,20 +21,36 @@ public class FormPanel extends JPanel implements ActionListener{
 
     public void setComboBoxesValues(boolean sup) {
         if(sup == true) {
-            range[1] = "A";
-            range[2] = "C";
-            range[3] = "E"; 
-        }
-        else if(sup == false) {
-            range[1] = "A";
-            range[2] = "B";
-            range[3] = "C";
-            range[4] = "D";
-            range[5] = "E"; 
+            num = new String[11];
+            range = new String[3];
+            range[0] = "A";
+            range[1] = "C";
+            range[2] = "E"; 
 
-            for(int i = 11; i<32; i++) {
-                if(i != 13) {
+            for(int i = 0; i<11; i++) {
                     num[i] = Integer.toString(i);
+                }
+        }
+        
+        else if(sup == false) {
+            num = new String[21];
+            range = new String[5];
+            range[0] = "A";
+            range[1] = "B";
+            range[2] = "C";
+            range[3] = "D";
+            range[4] = "E"; 
+
+            for(int i = 0; i<22; i++) {
+                if(i == 0) {
+                    num[i] = Integer.toString(11);
+                }
+
+                else if(i+10<13) {
+                    num[i] = Integer.toString(i+10);
+                }
+                else if(i+10>13) {
+                    num[i-1] = Integer.toString(i+10);
                 }
             }
         }
