@@ -12,6 +12,11 @@ public class JournalPanel extends JPanel implements ActionListener{
     DefaultListModel listModel = new DefaultListModel();
     JList listeChoix = new JList(listModel);
 
+    public JournalPanel() {
+            resetElements();
+            addComponents();
+    }
+
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == submit) {
 
@@ -32,9 +37,7 @@ public class JournalPanel extends JPanel implements ActionListener{
         listModelOne.addElement("Le Parisien");
     }
 
-    public JournalPanel() {
-        resetElements();
-        
+    public void addComponents() {
         this.setLayout(new GridBagLayout());
         GridBagConstraints contraintes = new GridBagConstraints();
         listeChoix.setVisibleRowCount(7);
@@ -94,6 +97,7 @@ public class JournalPanel extends JPanel implements ActionListener{
         contraintes.gridx = 4;
         contraintes.gridy = 1;
         this.add(submit,contraintes);
-
     }
+
+    
 }

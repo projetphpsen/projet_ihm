@@ -11,6 +11,10 @@ public class MenuPanel extends JPanel implements ActionListener {
 
     public MenuPanel() {
         submit.addActionListener(this);
+        addComponents();
+    }
+
+    public void addComponents() {
         this.setLayout(new GridBagLayout());
         GridBagConstraints contraintes = new GridBagConstraints();
         
