@@ -2,8 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.JTextArea;
 
-public class EndPanel extends JPanel   {
+public class EndPanel extends JPanel implements ActionListener  {
     Boolean sup = true; 
 
     JLabel label = new JLabel("<html>Merci de votre réservation !<br/>Voici le récapitulatif :<html/>");
@@ -11,13 +12,27 @@ public class EndPanel extends JPanel   {
     JLabel menu = new JLabel("Votre menu :");
     JLabel tablette = new JLabel("Tablette :");
     JLabel journaux = new JLabel("Vos journaux :");
+    JLabel text = new JLabel("Note pour l'équipage :");
 
     JLabel choixSiege;// = new JLabel("Votre siège :");
     JLabel choixMenu;// = new JLabel("Votre menu :");
     JLabel choixTablette = new JLabel("Oui");
     JLabel choixJournaux;// = new JLabel("Vos journaux :");
 
+    JTextArea textArea = new JTextArea("Commentaire...",5,20);
+    JButton submit = new JButton("Envoyer et quitter");
+    String commentaire;
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == submit) {
+            commentaire = textArea.getText();
+            System.out.println(commentaire);
+            System.exit(0);
+        }
+    }
+
     public EndPanel() {
+        submit.addActionListener(this);
         this.setLayout(new GridBagLayout());
         GridBagConstraints contraintes = new GridBagConstraints();
         
@@ -56,6 +71,16 @@ public class EndPanel extends JPanel   {
             //this.add(choixJournaux,contraintes);
 
         }
+
+        contraintes.gridx = 1;
+        contraintes.gridy = 5;
+        this.add(text,contraintes);
+        contraintes.gridx = 2;
+        this.add(textArea,contraintes);
+
+        contraintes.gridx = 1;
+        contraintes.gridy = 6;
+        this.add(submit,contraintes);
 
     }
 }
