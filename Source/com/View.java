@@ -9,12 +9,26 @@ public class View extends JFrame {
     CardTablette tablette = new CardTablette(this);
     CardJournal journal = new CardJournal(this);
     CardEnd end = new CardEnd();
-
+    private static JPanel cardPanel = new JPanel();
+    private static CardLayout cardLayout;
     public View() {
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+	setLayout(new FlowLayout());
+	new ConnectionDB();
+	cardLayout = new CardLayout();
+	setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new Dimension(1000, 800));
-        add(end, BorderLayout.CENTER);
-        pack();
-        setVisible(true);
+	cardPanel.setLayout(cardLayout);
+	cardPanel.add(connexion);
+	cardPanel.add(siege,"2");
+	add(cardPanel,BorderLayout.CENTER);
+	setVisible(true);
+    }
+
+    public static void next(){
+	cardLayout.next(cardPanel);
+    }
+
+    public static void main(String[] agrs){
+	new View();
     }
 }
