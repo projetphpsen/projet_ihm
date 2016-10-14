@@ -53,11 +53,11 @@ public class JournalPanel extends JPanel implements ActionListener{
         liste.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 JList liste = (JList)evt.getSource();
-                    if (evt.getClickCount() == 2) {
+                    if (evt.getClickCount() == 1) {
                         listModel.addElement(liste.getSelectedValue().toString());
                         listModelOne.removeElement(liste.getSelectedValue());
                         liste.clearSelection();
-                    } else if (evt.getClickCount() == 3) {
+                    } else if (evt.getClickCount() == 2) {
                         listModel.addElement(liste.getSelectedValue().toString());
                         listModelOne.removeElement(liste.getSelectedValue());
                         liste.clearSelection();
@@ -68,11 +68,11 @@ public class JournalPanel extends JPanel implements ActionListener{
         listeChoix.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 JList liste = (JList)evt.getSource();
-                    if (evt.getClickCount() == 2) {
+                    if (evt.getClickCount() == 1) {
                         listModelOne.addElement(listeChoix.getSelectedValue().toString());
                         listModel.removeElement(listeChoix.getSelectedValue());
                         liste.clearSelection();
-                    } else if (evt.getClickCount() == 3) {
+                    } else if (evt.getClickCount() == 2) {
                         listModelOne.addElement(listeChoix.getSelectedValue().toString());
                         listModel.removeElement(listeChoix.getSelectedValue());
                         liste.clearSelection();
