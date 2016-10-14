@@ -47,7 +47,7 @@ public class ClientModel {
 	    whereCondition = "Client.nom='"+nom+"' and Reservation.reference='"+refClient+"'";
 	}
 	
-	String requete = "SELECT Reservation.reference,Client.nom,prenom,Client.id,Vol.nom,depart,designation,choix,tablette,contenue,idPlace,Reservation.idVol FROM Vol join Reservation join Client join Classe join Menu join Commentaire on (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse and Menu.id=Reservation.idMenu and Vol.id=Reservation.idVol and Commentaire.idClient=Client.id and Commentaire.nomVol=Vol.nom and Commentaire.idClient=Reservation.idClient) WHERE "+whereCondition;
+	String requete = "SELECT Reservation.reference,Client.nom,prenom,Client.id,Vol.nom,depart,designation,choix,tablette,idPlace,Reservation.idVol FROM Vol join Reservation join Client join Classe join Menu on (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse and Menu.id=Reservation.idMenu and Vol.id=Reservation.idVol) WHERE "+whereCondition;
 	ResultSet resultat = stmt.executeQuery(requete);
 	if(resultat.next()){
 	    if(nom==null && refClient==null){
@@ -62,7 +62,7 @@ public class ClientModel {
 	    classeClient = resultat.getString("designation");
 	    menu = resultat.getString("choix");
 	    choixtablette = resultat.getBoolean("tablette");
-	    commentaireVolActuel = resultat.getString("contenue");
+	    //commentaireVolActuel = resultat.getString("contenue");
 	    idPlaceActuel = resultat.getInt("idPlace");
 	    if(nom != null)
 		return true;
