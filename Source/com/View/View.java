@@ -14,7 +14,7 @@ public class View extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new Dimension(1000, 800));
         add(end, BorderLayout.CENTER);
-        //pack();
+        pack();
         setVisible(true);
     }
 }

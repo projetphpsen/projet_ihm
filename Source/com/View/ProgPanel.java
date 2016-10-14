@@ -10,6 +10,7 @@ public class ProgPanel extends JPanel {
 
     public ProgPanel(JFrame frame) {
         this.frame = frame;
+        setPreferredSize(new Dimension(1920,200));
         repaint();
     }
 

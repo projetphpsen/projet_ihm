@@ -13,7 +13,9 @@ public class SiegePanel extends JPanel {
     private boolean[] rangeD = new boolean[20];
     private boolean[] rangeE = new boolean[20];
 
-    public SiegePanel() {    }
+    public SiegePanel() {  
+        setPreferredSize(new Dimension(900,500));
+      }
 
     public void paintComponent(Graphics g) {
         g.drawRect(0,0,600,200);

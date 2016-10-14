@@ -19,7 +19,7 @@ public class EndPanel extends JPanel implements ActionListener  {
     JLabel choixTablette = new JLabel("Oui");
     JLabel choixJournaux;// = new JLabel("Vos journaux :");
 
-    JTextArea textArea = new JTextArea("Commentaire...",5,20);
+    JTextArea textArea = new JTextArea(5,20);
     JButton submit = new JButton("Envoyer et quitter");
     String commentaire;
 

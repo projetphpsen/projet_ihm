@@ -9,7 +9,7 @@ public class CardConnexion extends JPanel {
     public CardConnexion() {
         setLayout(new BorderLayout());
         add(top, BorderLayout.NORTH);
-        add(conn, BorderLayout.SOUTH);
+        add(conn, BorderLayout.CENTER);
     }
 
 }
