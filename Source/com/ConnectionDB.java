@@ -20,7 +20,8 @@ public class ConnectionDB {
 	    Console console = System.console();
 	    String url = "jdbc:mysql://dwarves.iut-fbleau.fr/reilhac";
 	    String login="reilhac";
-	    String passwd = new String(console.readPassword("Password for database "+login+" : "));
+	    String passwd="simon";
+	    //String passwd = new String(console.readPassword("Password for database "+login+" : "));
 	    con = DriverManager.getConnection(url,login,passwd);
 	}
 	catch(SQLException e){
