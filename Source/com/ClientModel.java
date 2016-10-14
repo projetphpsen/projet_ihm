@@ -1,0 +1,223 @@
+import java.sql.*;
+import java.sql.SQLException;
+import java.util.Date;
+
+public class ClientModel {
+    private int id;
+    private String prenom;
+    private String nom;
+    private String refClient;
+    private String nomVol;
+    private int idVol;
+    private Date depart;
+    private String classeClient;
+    private String menu;
+    private Connection con;
+    private boolean choixtablette;
+    private String commentaireVolActuel;
+    private int idPlaceActuel;
+    private String referencePlace;
+    private String []listeQuotidien;
+    
+    public ClientModel (){}
+	    
+    /*public ClientModel(String nom, String prenom) throws SQLException{
+	Connection con = ConnectionDB.getConnection();
+	Statement stmt = con.createStatement();
+        PreparedStatement prepare = con.prepareStatement("INSERT INTO Client (nom,prenom) VALUES (?,2)");
+	prepare.setString(1, nom);
+	prepare.setString(2,prenom);
+	prepare.executeUpdate();
+    }
+    */
+    
+    //Vérifie si le client et la réservation sont enregistrés
+    public boolean getClient(int idPlace, String nomVol, String nomClient, String reference) throws SQLException{
+	con = ConnectionDB.getConnection();
+	Statement stmt = con.createStatement();
+	String whereCondition=null;
+	if(nomClient==null && reference==null && idPlace!=0 && nomVol!=null){
+	    VolModel v = new VolModel();
+	    int idVol = v.getIdDeNomVol(nomVol);
+	    whereCondition = "idPlace="+idPlace+" and idVol="+idVol+"";
+	}
+	if(nomClient!=null && reference!=null &&idPlace==0 && nomVol==null){
+	    nom = nomClient;
+	    refClient = reference;
+	    whereCondition = "Client.nom='"+nom+"' and Reservation.reference='"+refClient+"'";
+	}
+	
+	String requete = "SELECT Reservation.reference,Client.nom,prenom,Client.id,Vol.nom,depart,designation,choix,tablette,contenue,idPlace,Reservation.idVol FROM Vol join Reservation join Client join Classe join Menu join Commentaire on (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse and Menu.id=Reservation.idMenu and Vol.id=Reservation.idVol and Commentaire.idClient=Client.id and Commentaire.nomVol=Vol.nom and Commentaire.idClient=Reservation.idClient) WHERE "+whereCondition;
+	ResultSet resultat = stmt.executeQuery(requete);
+	if(resultat.next()){
+	    if(nom==null && refClient==null){
+		nom = resultat.getString("Client.nom");
+		refClient = resultat.getString("Reservation.reference");
+	    }
+	    prenom = resultat.getString("prenom");
+	    id = resultat.getInt("Client.id");
+	    this.nomVol = resultat.getString("Vol.nom");
+	    idVol = resultat.getInt("Reservation.idVol");
+	    depart = resultat.getTimestamp("depart");
+	    classeClient = resultat.getString("designation");
+	    menu = resultat.getString("choix");
+	    choixtablette = resultat.getBoolean("tablette");
+	    commentaireVolActuel = resultat.getString("contenue");
+	    idPlaceActuel = resultat.getInt("idPlace");
+	    if(nom != null)
+		return true;
+	    else
+		return false;
+	}
+	else
+	    return false;
+	    
+    }
+
+
+    
+    
+    public void setChoixTablette(boolean choixtablette) throws SQLException{
+	this.choixtablette = choixtablette;
+	Statement stmt = con.createStatement();
+	String requete = "UPDATE Reservation SET tablette="+choixtablette+"";
+	stmt.executeUpdate(requete);
+
+    }
+
+
+    public void setMenu(String menu) throws SQLException{
+	this.menu = menu;
+	int choix = 0;
+	Statement stmt = con.createStatement();
+	if(menu=="normal")
+	    choix = 1;
+	else if(menu=="végétarien")
+	    choix = 2;
+	else if(menu=="sans gluten")
+	    choix = 3;
+	
+	String requete = "UPDATE Reservation SET idMenu="+choix+" WHERE reference='"+refClient+"'";
+        stmt.executeUpdate(requete);
+    }
+
+    
+
+    public void setCommentaire (String contenue)  throws SQLException{
+	Statement stmt = con.createStatement();
+	String requete = null;
+	if(commentaireVolActuel!=contenue){
+	    requete = "UPDATE Commentaire SET contenue='"+contenue+"' WHERE idClient="+id+" and nomVol='"+nomVol+"'";
+	    commentaireVolActuel=contenue;
+	}
+	if(commentaireVolActuel ==null){
+	    requete = "INSERT INTO Commentaire(idClient,nomVol,contenue) VALUES("+id+",'"+nomVol+"','"+contenue+"')";
+	}
+	if(requete!=null)
+	    stmt.executeUpdate(requete);
+    }
+
+    public void setPlace(int idPlace) throws SQLException{
+	Statement stmt = con.createStatement();
+	String requete = null;
+	if(idPlaceActuel==0)
+	    requete = "INSERT INTO Reservation(idPlace) VALUES("+idPlace+") WHERE idVol="+idVol+" and idClient="+id+"";
+	if(idPlaceActuel!=idPlace){
+	    requete = "UPDATE Reservation SET idPlace="+idPlace+" WHERE idVol="+idVol+" and idClient="+id+"";
+	} 
+	if(requete != null)
+	    stmt.executeUpdate(requete);
+    }
+
+    /*Attention : méthode  provoquant des récurrences dans la base de donnée, penser à vérifer que le quotidien n'y est pas déjà*/
+    public void setChoixQuotidien(int idQuotidien) throws SQLException {
+	Statement stmt = con.createStatement();
+	String requete = "INSERT INTO ChoixQuotidien(idClient,idVol,idQuotidien) VALUES ("+id+","+idVol+","+idQuotidien+")";
+	stmt.executeUpdate(requete);
+    }
+
+    public String[] getListeQuotidien() throws SQLException {
+	Statement stmt = con.createStatement();
+	String requete = "SELECT DISTINCT nom FROM Quotidien JOIN ChoixQuotidien ON(ChoixQuotidien.idQuotidien = Quotidien.id) WHERE idClient="+id+" and idVol="+idVol+"";
+	    ResultSet resultat = stmt.executeQuery(requete);
+	    //System.out.println(resultat.getInt("count(*)"));
+	    int i = 0;
+	    resultat.last();
+	    int taille = resultat.getRow();
+	    resultat.beforeFirst();
+	    while(resultat.next()){
+		if(i==0){
+		    listeQuotidien = new String[taille];
+		}
+		listeQuotidien[i]=resultat.getString("nom");
+		i++;
+	    }
+	    return listeQuotidien;
+    }
+    
+    public int getIdPlace() throws SQLException{
+	Statement stmt = con.createStatement();
+	String requete = "SELECT idPlace FROM Reservation WHERE idClient="+id+" and idVol="+idVol+"";
+	ResultSet resultat = stmt.executeQuery(requete);
+	if(resultat.next())
+	    idPlaceActuel = resultat.getInt("idPlace");
+	return idPlaceActuel;
+    }
+
+    public String getReferencePlace() throws SQLException{
+	Statement stmt = con.createStatement();
+	String requete = "SELECT reference FROM Place WHERE id="+idPlaceActuel+"";
+	ResultSet resultat = stmt.executeQuery(requete);
+	if(resultat.next())
+	    referencePlace = resultat.getString("reference");
+	return referencePlace;
+    }
+    
+    public int getId(){
+	return id;
+    }
+
+    public String getNom(){
+	return nom;
+    }
+
+    public String getRefClient(){
+	return refClient;
+    }
+
+    public String getNomVol(){
+	return nomVol;
+    }
+
+    public String getClasseClient(){
+	return classeClient;
+    }
+
+    public String getMenu(){
+	return menu;
+    }
+
+    public String getPrenom(){
+	return prenom;
+    }
+
+    public Date getDepart(){
+	return depart;
+    }
+
+    public boolean getChoixTablette(){
+	return choixtablette;
+    }
+    
+    public String getCommentaire(String indexVol) throws SQLException{
+	Statement stmt = con.createStatement();
+	String requete = "SELECT contenue FROM Commentaire WHERE nomVol='"+indexVol+"' and idClient="+id+"";
+	ResultSet resultat = stmt.executeQuery(requete);
+	if(resultat.next())
+	    return resultat.getString("contenue");
+	else
+	    return null;
+    }
+
+    
+}
