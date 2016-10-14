@@ -1,3 +1,4 @@
+import java.sql.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -22,10 +23,11 @@ public class ConnexionPanel extends JPanel implements ActionListener{
         if(e.getSource() == submit) {
             nomS = nameField.getText();
             numS = numField.getText();
-            System.out.println(nomS);
-            System.out.println(numS);
-            
-        }
+	    try{
+		ConnexionControler c = new ConnexionControler(nomS,numS);
+	    }
+	    catch(SQLException err){}
+	    }
     }
 
     public void addComponents() {
