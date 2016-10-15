@@ -46,7 +46,7 @@ public class JournalPanel extends JPanel implements ActionListener{
         listModelOne.clear();
         listModelOne.addElement("L'Equipe");
         listModelOne.addElement("Le Figaro");
-        listModelOne.addElement("L'Humanité'");
+        listModelOne.addElement("L'Humanité");
         listModelOne.addElement("Libération");
         listModelOne.addElement("Les échos");
         listModelOne.addElement("Le Parisien");

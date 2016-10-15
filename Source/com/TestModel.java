@@ -54,7 +54,7 @@ public class TestModel {
 		    System.out.println("- getchoixtablette(2) : "+c.getChoixTablette());
 		    System.out.println("- getcommentaire(1) : "+c.getCommentaire(c.getNomVol()));
 		    System.out.println("- setcommentaire : "+commentaire);
-		    c.setCommentaire(commentaire);
+		    c.setCommentaire(commentaire,c.getCommentaire(c.getNomVol()));
 		    System.out.println("- getcommentaire(2) : "+c.getCommentaire(c.getNomVol()));
 		    System.out.println("- getidPlace(1) : "+c.getIdPlace());
 		    System.out.println("- getReferencePlace(1) : "+c.getReferencePlace());

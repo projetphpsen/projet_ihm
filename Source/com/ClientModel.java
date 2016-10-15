@@ -14,7 +14,6 @@ public class ClientModel {
     private String menu;
     private Connection con;
     private boolean choixtablette;
-    private String commentaireVolActuel;
     private int idPlaceActuel;
     private String referencePlace;
     private String []listeQuotidien;
@@ -62,7 +61,6 @@ public class ClientModel {
 	    classeClient = resultat.getString("designation");
 	    menu = resultat.getString("choix");
 	    choixtablette = resultat.getBoolean("tablette");
-	    //commentaireVolActuel = resultat.getString("contenue");
 	    idPlaceActuel = resultat.getInt("idPlace");
 	    if(nom != null)
 		return true;
@@ -103,14 +101,13 @@ public class ClientModel {
 
     
 
-    public void setCommentaire (String contenue)  throws SQLException{
+    public void setCommentaire (String contenue,String contenueActuel)  throws SQLException{
 	Statement stmt = con.createStatement();
 	String requete = null;
-	if(commentaireVolActuel!=contenue){
+	if(contenueActuel!=contenue){
 	    requete = "UPDATE Commentaire SET contenue='"+contenue+"' WHERE idClient="+id+" and nomVol='"+nomVol+"'";
-	    commentaireVolActuel=contenue;
 	}
-	if(commentaireVolActuel ==null){
+	if(contenueActuel ==null){
 	    requete = "INSERT INTO Commentaire(idClient,nomVol,contenue) VALUES("+id+",'"+nomVol+"','"+contenue+"')";
 	}
 	if(requete!=null)

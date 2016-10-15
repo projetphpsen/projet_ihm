@@ -1,3 +1,4 @@
+import java.sql.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -22,12 +23,17 @@ public class EndPanel extends JPanel implements ActionListener  {
     JTextArea textArea = new JTextArea(5,20);
     JButton submit = new JButton("Envoyer et quitter");
     String commentaire;
-
+    EndControler ec = new EndControler();
+    
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == submit) {
             commentaire = textArea.getText();
-            System.out.println(commentaire);
-            System.exit(0);
+	    try{
+	    ec.setCommentaire(commentaire);
+	    }
+	    catch(SQLException err){
+	    }
+	    System.exit(0);
         }
     }
 
