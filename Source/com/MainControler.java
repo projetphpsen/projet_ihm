@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class MainControler {
-    private ClientModel c;
+    private static ClientModel c;
     private static View v;
     
     public MainControler() {
@@ -12,11 +12,12 @@ public class MainControler {
 	v = view;
     }
     
-    public void setClient(ClientModel c){
-	c = this.c;
+    public void setClient(ClientModel client){
+	c=client;
+	
     }
 
-    public ClientModel getClient(){
+    public static ClientModel getClient(){
 	return c;
     }
     

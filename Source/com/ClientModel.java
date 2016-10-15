@@ -32,7 +32,7 @@ public class ClientModel {
     */
     
     //Vérifie si le client et la réservation sont enregistrés
-    public boolean getClient(int idPlace, String nomVol, String nomClient, String reference) throws SQLException{
+    public boolean find(int idPlace, String nomVol, String nomClient, String reference) throws SQLException{
 	con = ConnectionDB.getConnection();
 	Statement stmt = con.createStatement();
 	String whereCondition=null;

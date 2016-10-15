@@ -12,7 +12,7 @@ public class View extends JFrame {
     private static JPanel cardPanel = new JPanel();
     private static CardLayout cardLayout;
     public View() {
-	setLayout(new FlowLayout());
+	setLayout(new BorderLayout());
 	new ConnectionDB();
 	MainControler.setView(this);
 	cardLayout = new CardLayout();
@@ -26,8 +26,8 @@ public class View extends JFrame {
 	cardPanel.add(journal);
 	cardPanel.add(end);
 	add(cardPanel,BorderLayout.CENTER);
-	setVisible(true);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setVisible(true);
     }
 
     public void next(){

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class JournalPanel extends JPanel implements ActionListener{
     JLabel label = new JLabel("Veuillez choisir vos quotidiens favoris :");
-    JButton clear = new JButton("Reset");
+    JButton clear = new JButton("Effacer");
     JButton submit = new JButton("Suivant");
     DefaultListModel listModelOne = new DefaultListModel();
     JList liste = new JList(listModelOne);

@@ -35,7 +35,7 @@ public class TestModel {
 		    System.out.println("---MODELE : ConnexionDB.java---");
 		    System.out.println("- ConnectionDB.getConnection(1) : "+ConnectionDB.getConnection());
 		    System.out.println("---MODELE : ClientModel.java---");
-		    System.out.println("- findClient : "+c.getClient(idPlace,nomVol,nomClient,refClient));
+		    System.out.println("- findClient : "+c.find(idPlace,nomVol,nomClient,refClient));
 		    System.out.println("- getnom : "+c.getNom());
 		    System.out.println("- getprenom : "+c.getPrenom()); 
 		    System.out.println("- getrefClient : "+c.getRefClient());
