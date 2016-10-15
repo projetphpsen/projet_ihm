@@ -8,6 +8,16 @@ public class MainControler {
        
     }
 
+    public void setPlace() throws SQLException{
+	for(int i = 1; i <=130;i++)
+	    v.setPlace(i);
+    }
+
+    public static String getPlace (int idPlace) throws SQLException{
+	PlaceModel p = new PlaceModel();
+	return p.placeDisponible(idPlace,c.getIdVol());
+    }
+
     public static void setView(View view){
 	v = view;
     }
@@ -21,8 +31,15 @@ public class MainControler {
 	return c;
     }
     
-    public void nextCard(){
-	v.next();
+    public void nextCard(int i){
+	v.next(i);
+    }
+
+    public static void setClasseClient(){
+	if(c.getClasseClient()!=1)
+	    View.setSup(false);
+	else
+	    View.setSup(true);
     }
 }
 	    

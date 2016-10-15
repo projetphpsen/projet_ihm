@@ -10,7 +10,7 @@ public class ClientModel {
     private String nomVol;
     private int idVol;
     private Date depart;
-    private int classeClient;
+    private int idClasse;
     private String menu;
     private Connection con;
     private boolean choixtablette;
@@ -46,7 +46,7 @@ public class ClientModel {
 	    whereCondition = "Client.nom='"+nom+"' and Reservation.reference='"+refClient+"'";
 	}
 	
-	String requete = "SELECT Reservation.idClasse,Reservation.reference,Client.nom,prenom,Client.id,Vol.nom,depart,designation,choix,tablette,idPlace,Reservation.idVol FROM Vol join Reservation join Client join Classe join Menu on (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse and Menu.id=Reservation.idMenu and Vol.id=Reservation.idVol) WHERE "+whereCondition;
+	String requete = "SELECT Classe.id,Reservation.reference,Client.nom,prenom,Client.id,Vol.nom,depart,designation,choix,tablette,idPlace,Reservation.idVol FROM Vol join Reservation join Client join Classe join Menu on (Reservation.idClient=Client.id and Classe.id=Reservation.idClasse and Menu.id=Reservation.idMenu and Vol.id=Reservation.idVol) WHERE "+whereCondition;
 	ResultSet resultat = stmt.executeQuery(requete);
 	if(resultat.next()){
 	    if(nom==null && refClient==null){
@@ -58,7 +58,7 @@ public class ClientModel {
 	    this.nomVol = resultat.getString("Vol.nom");
 	    idVol = resultat.getInt("Reservation.idVol");
 	    depart = resultat.getTimestamp("depart");
-	    classeClient = resultat.getInt("Reservation.idClasse");
+	    IdClasse = resultat.getString("Classe.id");
 	    menu = resultat.getString("choix");
 	    choixtablette = resultat.getBoolean("tablette");
 	    idPlaceActuel = resultat.getInt("idPlace");
@@ -190,8 +190,8 @@ public class ClientModel {
 	return nomVol;
     }
 
-    public int getClasseClient(){
-	return classeClient;
+    public String getIdClasseClient(){
+	return idClasse;
     }
 
     public String getMenu(){

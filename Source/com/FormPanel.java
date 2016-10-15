@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class FormPanel extends JPanel implements ActionListener{
-    boolean sup = true;
+    boolean sup;
     JComboBox combox;
     JComboBox combo; 
     String[] range;
@@ -14,7 +14,7 @@ public class FormPanel extends JPanel implements ActionListener{
     String siegeChoisi;
 
     public FormPanel() {
-        setComboBoxesItems(this.sup);
+        setComboBoxesItems(View.getSup());
         submit.addActionListener(this);
         combo = new JComboBox(num);
         combox = new JComboBox(range);

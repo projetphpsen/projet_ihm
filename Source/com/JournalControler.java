@@ -17,6 +17,6 @@ public class JournalControler extends MainControler {
     }
 
     public void finChoix(){
-	this.nextCard();
+	this.nextCard(6);
     }
 }

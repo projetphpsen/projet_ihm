@@ -10,7 +10,7 @@ public class SiegeControler extends MainControler {
 	int idSiegeActuel = c.getIdPlace();
 	if(p.placeDisponible(idSiegeChoisi,idVol,idSiegeActuel)==true){
 	    c.setPlace(idSiegeChoisi);
-	    this.nextCard();
+	    this.nextCard(3);
 	}
 
     }

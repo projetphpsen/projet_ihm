@@ -6,7 +6,7 @@ public class MenuControler extends MainControler {
 	ClientModel c = this.getClient();
 	PlaceModel p = new PlaceModel();
 	c.setMenu(menu);
-	this.nextCard();
+	this.nextCard(4);
 	    
     }
 }

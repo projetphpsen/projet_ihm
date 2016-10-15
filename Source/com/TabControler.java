@@ -6,7 +6,9 @@ public class TabControler extends MainControler {
 	ClientModel c = this.getClient();
 	if(choix=="Oui")
 	    c.setChoixTablette(true);
-	this.nextCard();
-	    
+	if(View.getSup()==true)
+	    this.nextCard(5);
+	else
+	    this.nextCard(6);
     }
 }

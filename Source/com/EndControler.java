@@ -11,7 +11,6 @@ public class EndControler extends MainControler {
 	String nomVol = c.getNomVol();
 	String contenueActuel = c.getCommentaire(nomVol);
 	c.setCommentaire(contenue,contenueActuel);
-	this.nextCard();
     }
 
 }

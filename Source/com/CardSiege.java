@@ -15,9 +15,9 @@ public class CardSiege extends JPanel {
 	frame = frame;
         prog = new ProgPanel(frame);
 	add(prog, BorderLayout.NORTH); 
-        //add(plane, BorderLayout.WEST);
-	//add(siege, BorderLayout.EAST);
-        add(formulaire, BorderLayout.CENTER);
+        add(plane, BorderLayout.WEST);
+	add(siege, BorderLayout.EAST);
+        add(formulaire, BorderLayout.SOUTH);
     }
 
 }

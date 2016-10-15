@@ -6,7 +6,9 @@ public class ConnexionControler extends MainControler {
 	ClientModel client = new ClientModel();
 	if(client.find(0,null,nom,reference)){
 	    this.setClient(client);
-	    this.nextCard();
+	    this.setPlace();
+	    this.setClasseClient();
+	    this.nextCard(2);
 	}
 
     }
