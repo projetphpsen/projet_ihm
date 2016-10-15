@@ -80,7 +80,7 @@ public class ClientModel {
     public void setChoixTablette(boolean choixtablette) throws SQLException{
 	this.choixtablette = choixtablette;
 	Statement stmt = con.createStatement();
-	String requete = "UPDATE Reservation SET tablette="+choixtablette+" and reference='"+refClient+"'";
+	String requete = "UPDATE Reservation SET tablette="+choixtablette+" and reference='"+reference+"'";
 	stmt.executeUpdate(requete);
 
     }

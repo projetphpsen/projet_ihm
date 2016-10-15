@@ -1,0 +1,18 @@
+import java.sql.*;
+
+public class SiegeControler extends MainControler {
+
+    public SiegeControler(String siege) throws SQLException {
+	ClientModel c = this.getClient();
+	PlaceModel p = new PlaceModel();
+	int idSiegeChoisi = p.getIdDeReferencePlace(siege);
+	int idVol = c.getIdVol();
+	int idSiegeActuel = c.getIdPlace();
+	if(p.placeDisponible(idSiegeChoisi,idVol,idSiegeActuel)==true){
+	    c.setPlace(idSiege);
+	    this.nextCard();
+	}
+
+    }
+}
+

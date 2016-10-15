@@ -16,7 +16,7 @@ public class PlaceModel {
     }
 
 
-    public boolean placeDisponible(int idPlaceChoisi, int idVol, int idPlaceActuel) throws SQLException {
+    public boolean placeDisponible(int idPlaceChoisi, int idVol, int idPlaceActuel){
 	Connection con = ConnectionDB.getConnection();
 	Statement stmt = con.createStatement();
 	String requete = "SELECT idPlace FROM Reservation WHERE idPlace="+idPlaceChoisi+" and idVol="+idVol+""; 

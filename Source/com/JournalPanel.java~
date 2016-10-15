@@ -34,7 +34,6 @@ public class JournalPanel extends JPanel implements ActionListener{
 		 catch(SQLException err){
 		 }
 	    }
-	    jc.finChoix();
         }
         if(e.getSource() == clear) {
             resetElements();
